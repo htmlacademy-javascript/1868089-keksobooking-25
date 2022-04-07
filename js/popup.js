@@ -1,8 +1,8 @@
-import {advertTypeEnToRu} from'./data.js';
+import {advertTypeEnToRu} from'./const.js';
 
-const similarAdvertTemplate = document.querySelector('#card').content.querySelector('.popup');
+const similarAdTemplate = document.querySelector('#card').content.querySelector('.popup');
 
-const createPhotoElements = (photoArray, parentElement) => {
+const createPhotoElement = (photoArray, parentElement) => {
   photoArray.forEach((photo) => {
     const photoTemplate = parentElement.children[0].cloneNode(true);
     photoTemplate.src = photo;
@@ -11,23 +11,23 @@ const createPhotoElements = (photoArray, parentElement) => {
   parentElement.children[0].remove();
 };
 
-const createFeatureElements = (list, featuresArray, nameClass) => {
+const createFeatureElement = (list, featuresArray) => {
   list.forEach((listItem) => {
     const isExists = featuresArray.some((userFeature) =>
-      listItem.classList.contains(`${nameClass}${userFeature}`),
+      listItem.classList.contains(`popup__feature--${userFeature}`),
     );
     if (!isExists) {listItem.remove();}
   });
 };
 
 const checkAvailableData = (key, element) => {
-  if (typeof key === 'undefined') {
-    element.hidden = true;
+  if (!key) {
+    element.remove();
   }
 };
 
 const createPopup = ({offer, author}) => {
-  const adElement = similarAdvertTemplate.cloneNode(true);
+  const adElement = similarAdTemplate.cloneNode(true);
 
   const adTitle = adElement.querySelector('.popup__title');
   const adAddress = adElement.querySelector('.popup__text--address');
@@ -37,7 +37,7 @@ const createPopup = ({offer, author}) => {
   const adTime = adElement.querySelector('.popup__text--time');
   const adDescription = adElement.querySelector('.popup__description');
   const adAvatar = adElement.querySelector('.popup__avatar');
-  const adFeatures = adElement.querySelectorAll('.popup__features');
+  const adFeatures = adElement.querySelector('.popup__features');
   const featuresList = adElement.querySelectorAll('.popup__feature');
   const adPhotos = adElement.querySelector('.popup__photos');
 
@@ -57,19 +57,18 @@ const createPopup = ({offer, author}) => {
   checkAvailableData(offer.checkin, adTime);
   checkAvailableData(offer.description, adDescription);
   checkAvailableData(author.avatar, adAvatar);
-  checkAvailableData(offer.features, adFeatures);
-  checkAvailableData(offer.photos, adPhotos);
 
-  if (typeof offer['features'] !== 'undefined') {
-    createFeatureElements(featuresList, offer.features, 'popup__feature--');
+
+  if (offer.features) {
+    createFeatureElement(featuresList, offer.features);
   } else {
-    adFeatures.hidden = true;
+    adFeatures.remove();
   }
 
-  if (typeof offer['photos'] !== 'undefined') {
-    createPhotoElements(offer.photos, adPhotos);
+  if (offer.photos) {
+    createPhotoElement(offer.photos, adPhotos);
   } else {
-    adPhotos.hidden = true;
+    adPhotos.remove();
   }
 
   return adElement;
