@@ -50,7 +50,7 @@ const PRICE_RANGE = {
   },
 };
 
-const ROOMS_GUESTS_OPTIONS = {
+const ROOM_GUEST_OPTION = {
   '1': ['1'],
   '2': ['2', '1'],
   '3': ['3', '2', '1'],
@@ -70,5 +70,5 @@ export {
   PRICE_STEP,
   PRICE_RANGE,
   DEFAULT_VALUE,
-  ROOMS_GUESTS_OPTIONS
+  ROOM_GUEST_OPTION
 };
