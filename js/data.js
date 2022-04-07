@@ -1,28 +1,4 @@
-import {getRandomPositiveInteger, getRandomPositiveFloat, getRandomArrayElement, getRandomArray} from './util.js';
-
-const AdvertType = {
-  PALACE: 'palace',
-  FLAT: 'flat',
-  HOUSE: 'house',
-  BUNGALOW: 'bungalow',
-  HOTEL: 'hotel',
-};
-
-const advertTypeEnToRu = {
-  [AdvertType.PALACE]: 'Дворец',
-  [AdvertType.FLAT]: 'Квартира',
-  [AdvertType.HOUSE]: 'Дом',
-  [AdvertType.BUNGALOW]: 'Бунгало',
-  [AdvertType.HOTEL]: 'Отель',
-};
-
-const MIN_PRICE = {
-  bungalow: 0,
-  flat: 1000,
-  hotel: 3000,
-  house: 5000,
-  palace: 10000,
-};
+import {getRandomPositiveInteger, getRandomPositiveFloat, getRandomArrayElement, getRandomArray} from './random.js..js';
 
 const TITLE_OF_PLACEMENT = [
   'Настоящий рай для любителей дайвинга',
@@ -107,4 +83,4 @@ const createAds = (count) => {
   return ads;
 };
 
-export {createAds, AdvertType, advertTypeEnToRu, MIN_PRICE};
+export {createAds};
