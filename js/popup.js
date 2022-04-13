@@ -76,5 +76,4 @@ const createPopup = ({offer, author}) => {
   return adElement;
 };
 
-export {
-  createPopup};
+export {createPopup};
