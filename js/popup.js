@@ -1,9 +1,9 @@
 import {numDecline} from'./random.js';
-import {advertTypeEnToRu} from'./const.js';
+import {adTypesToReadable} from'./const.js';
 
 const similarAdTemplate = document.querySelector('#card').content.querySelector('.popup');
 
-const createPhotoElement = (photoArray, parentElement) => {
+const createPhotoElements = (photoArray, parentElement) => {
   photoArray.forEach((photo) => {
     const photoTemplate = parentElement.children[0].cloneNode(true);
     photoTemplate.src = photo;
@@ -12,7 +12,7 @@ const createPhotoElement = (photoArray, parentElement) => {
   parentElement.children[0].remove();
 };
 
-const createFeatureElement = (list, featuresArray) => {
+const createFeatureElements = (list, featuresArray) => {
   list.forEach((listItem) => {
     const isExists = featuresArray.some((userFeature) =>
       listItem.classList.contains(`popup__feature--${userFeature}`),
@@ -45,7 +45,7 @@ const createPopup = ({offer, author}) => {
   adTitle.textContent = offer.title;
   adAddress.textContent = offer.address;
   adPrice.textContent = `${offer.price} ₽/ночь`;
-  adType.textContent = advertTypeEnToRu[offer.type];
+  adType.textContent = adTypesToReadable[offer.type];
   adCapacity.textContent = `${offer.rooms} ${numDecline(offer.rooms, 'комната', 'комнаты', 'комнат')} для ${offer.guests} ${numDecline(offer.guests, 'гостя', 'гостей', 'гостей')}`;
   adTime.textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   adDescription.textContent = offer.description;
@@ -62,13 +62,13 @@ const createPopup = ({offer, author}) => {
 
 
   if (offer.features) {
-    createFeatureElement(featuresList, offer.features);
+    createFeatureElements(featuresList, offer.features);
   } else {
     adFeatures.remove();
   }
 
   if (offer.photos) {
-    createPhotoElement(offer.photos, adPhotos);
+    createPhotoElements(offer.photos, adPhotos);
   } else {
     adPhotos.remove();
   }
