@@ -3,7 +3,7 @@ import './slider.js';
 import {getLocationToString, resetMainPin, filterAd} from './map.js';
 import {sendData} from './api.js';
 import {openMessage} from './fault.js';
-import {FILE_TYPE, NUMBER_AFTER_POINT, MAIN_LOCATION} from './const.js';
+import {FILE_TYPES, NUMBER_AFTER_POINT, MAIN_LOCATION} from './const.js';
 
 const adForm = document.querySelector('.ad-form');
 const mainPinLocation = document.querySelector('#address');
@@ -51,11 +51,10 @@ adForm.addEventListener('submit', (evt) => {
   }
 });
 
-
 avatarChooser.addEventListener('change', () => {
   const [avatar] = avatarChooser.files;
   const fileName = avatar.name.toLowerCase();
-  const matches = FILE_TYPE.some((it) => fileName.endsWith(it));
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
   if (matches) {
     avatarPreview.src = URL.createObjectURL(avatar);
   }
@@ -65,7 +64,7 @@ photoChooser.addEventListener('change', () => {
   const [photo] = photoChooser.files;
   const photoName = photo.name.toLowerCase();
 
-  const matchTypes = FILE_TYPE.some((it) => photoName.endsWith(it));
+  const matchTypes = FILE_TYPES.some((it) => photoName.endsWith(it));
 
   if (matchTypes) {
     photoPreview.innerHTML = `<img src="${URL.createObjectURL(photo)}" width="70" height="70">`;
