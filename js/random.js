@@ -1,19 +1,3 @@
-// Склонение существительных после числительного
-const numDecline = (n, form1, form2, form3) => {
-  n = Math.abs(n) % 100;
-  const n1 = n % 10;
-  if (n > 10 && n < 20) {
-    return form3;
-  }
-  if (n1 > 1 && n1 < 5) {
-    return form2;
-  }
-  if (n1 === 1) {
-    return form1;
-  }
-  return form3;
-};
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const showAlert = (message) => {
@@ -46,6 +30,21 @@ const debounce = (callback, timeoutDelay = 500) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
+};
+
+const numDecline = (n, form1, form2, form3) => {
+  n = Math.abs(n) % 100;
+  const n1 = n % 10;
+  if (n > 10 && n < 20) {
+    return form3;
+  }
+  if (n1 > 1 && n1 < 5) {
+    return form2;
+  }
+  if (n1 === 1) {
+    return form1;
+  }
+  return form3;
 };
 
 export {
