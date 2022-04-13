@@ -1,9 +1,9 @@
 import {createPopup} from './popup.js';
 import {getAds} from './api.js';
 import {toggleFormDisabled, toggleMapFiltersDisabled} from './switch.js';
-import {debounce, showAlert} from './random,js';
+import {debounce, showAlert} from './random.js';
 import {checkAllFilters} from './filter.js';
-import {COUNT_OF_ADVERT, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
+import {COUNT_OF_ADS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
 
 const allAds = [];
 
@@ -86,7 +86,7 @@ const resetMainPin = () => {
 (async () => {
   const fetchedAds = await getAds(() => showAlert(`${Messages.GET_NO_ADS}`));
   allAds.push(...fetchedAds);
-  allAds.slice(0, COUNT_OF_ADVERT).forEach((ad) => {
+  allAds.slice(0, COUNT_OF_ADS).forEach((ad) => {
     createMarker(ad);
     toggleMapFiltersDisabled(false);
   });
@@ -95,7 +95,7 @@ const resetMainPin = () => {
 const filterAd = () => {
   markerGroup.clearLayers();
   const filteredAds = allAds.filter((ad) => checkAllFilters(ad));
-  filteredAds.slice(0, COUNT_OF_ADVERT).forEach((ad) => {
+  filteredAds.slice(0, COUNT_OF_ADS).forEach((ad) => {
     createMarker(ad);
   });
 
@@ -107,4 +107,3 @@ const filterAd = () => {
 filterForm.addEventListener('change', debounce(filterAd, RERENDER_DELAY));
 
 export {resetMainPin, getLocationToString, mainPinLocation, filterAd};
-
