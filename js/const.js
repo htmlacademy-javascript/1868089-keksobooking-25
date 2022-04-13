@@ -3,6 +3,7 @@ const ServerUrl = {
   POST_URL: 'https://25.javascript.pages.academy/keksobooking',
 };
 
+
 const Messages = {
   GET_NO_ADS: 'Не удалось получить данные с сервера :(',
   FIND_NO_ADS: 'Не удалось найти подходящие объявления',
