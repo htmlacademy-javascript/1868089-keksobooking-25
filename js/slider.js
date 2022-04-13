@@ -6,7 +6,6 @@ const sliderPrice = document.querySelector('.ad-form__slider');
 const adType = document.querySelector('#type');
 const resetButton = document.querySelector('.ad-form__reset');
 
-
 noUiSlider.create(sliderPrice, {
   range: {
     min: adTypesToPrice[adType.value],
@@ -45,4 +44,3 @@ adType.addEventListener('change', () => {
 resetButton.addEventListener('click', () => {
   sliderPrice.noUiSlider.reset();
 });
-
