@@ -57,3 +57,4 @@ const onTimeInOutChange = (evt) => {
 adTimeInOut.addEventListener('change', onTimeInOutChange);
 
 export {adPrice, pristine};
+
