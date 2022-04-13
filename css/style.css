@@ -1,7 +1,6 @@
 /* Общие стили. Каркас
-   ========================================================================== */
-
-@font-face {
+ ========================================================================== */
+ @font-face {
   font-family: "Roboto";
   src: url("../fonts/Roboto-Bold.woff2") format("woff2");
   font-weight: 900;
@@ -1050,6 +1049,25 @@ fieldset {
   overflow: hidden;
 }
 
-.hidden {
+.ad-form__error {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #dc1d34;
+}
+
+.ad-form__item--invalid input {
+  border-color: #ffaa99;
+}
+
+.ad-form__item--invalid select {
+  border-color: #ffaa99;
+}
+
+ .ad-form__slider {
+   margin-top: 5px;
+ }
+
+ .hidden {
   display: none;
 }
