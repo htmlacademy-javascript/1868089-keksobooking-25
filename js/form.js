@@ -1,43 +1,74 @@
+import {pristine} from'./validator.js';
+import './slider.js';
+import {getLocationToString, resetMainPin, filterAd} from './map.js';
+import {sendData} from './api.js';
+import {openMessage} from './fault.js';
+import {FILE_TYPE, NUMBER_AFTER_POINT, MAIN_LOCATION} from './const.js';
 
-/*
-// Валидация цены и типа жилья
-const validateAdPrice = (value) => value >= adTypesToPrice[adType.value] && value <= MAX_PRICE_FOR_NIGHT;
-const getAdTypeErrorMessage = () => `Минимальная цена за ночь: ${adTypesToPrice[adType.value]}`;
+const adForm = document.querySelector('.ad-form');
+const mainPinLocation = document.querySelector('#address');
+const resetButton = document.querySelector('.ad-form__reset');
+const submitButton = document.querySelector('.ad-form__submit');
+const filterForm = document.querySelector('.map__filters');
 
-pristine.addValidator(
-  adPrice,
-  validateAdPrice,
-  getAdTypeErrorMessage
-);
+const successTemplate = document.querySelector('#success').content.querySelector('.success');
+const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
-const onAdTypeChange = function () {
-  adPrice.min = adTypesToPrice[this.value];
-  adPrice.placeholder =  adTypesToPrice[this.value];
-  if (adPrice.value) {
-    pristine.validate(adPrice);
-  }
+const avatarChooser = document.querySelector('.ad-form__field input[type=file]');
+const avatarPreview = document.querySelector('.ad-form-header__preview img');
+const photoChooser = document.querySelector('.ad-form__upload input[type=file]');
+const photoPreview = document.querySelector('.ad-form__photo');
+
+const resetAllPhoto = () => {
+  avatarPreview.src = 'img/muffin-grey.svg';
+  photoPreview.innerHTML = '';
 };
 
-adType.addEventListener('change', onAdTypeChange);
+const resetForm = (evt) => {
+  evt.preventDefault();
+  pristine.reset();
+  adForm.reset();
+  filterForm.reset();
+  filterAd();
+  resetAllPhoto();
+  mainPinLocation.value = getLocationToString(MAIN_LOCATION, NUMBER_AFTER_POINT);
+  resetMainPin();
+};
 
-// Валидация количества комнат и гостей
-const validateDelivery = () => ROOMS_GUESTS_OPTIONS[roomNumber.value].includes(capacity.value);
-const getDeliveryErrorMessage = () => 'Выберите другое кол-во гостей :)';
+resetButton.addEventListener('click', resetForm);
 
-pristine.addValidator(
-  capacity,
-  validateDelivery,
-  getDeliveryErrorMessage
-);
+adForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
 
-roomNumber.addEventListener('change', () => {
-  pristine.validate(capacity);
+  const isValid = pristine.validate();
+  if (isValid) {
+    sendData(new FormData(evt.target),
+      () => resetForm(evt),
+      () => openMessage(successTemplate, false),
+      () => openMessage(errorTemplate, true),
+    );
+    submitButton.disabled = true;
+  }
 });
 
-// Валидация времени заезда и выезда
-const onTimeInOutChange = (evt) => {
-  timeIn.value = timeOut.value = evt.target.value;
-};
 
-adTimeInOut.addEventListener('change', onTimeInOutChange);
-*/
+avatarChooser.addEventListener('change', () => {
+  const [avatar] = avatarChooser.files;
+  const fileName = avatar.name.toLowerCase();
+  const matches = FILE_TYPE.some((it) => fileName.endsWith(it));
+  if (matches) {
+    avatarPreview.src = URL.createObjectURL(avatar);
+  }
+});
+
+photoChooser.addEventListener('change', () => {
+  const [photo] = photoChooser.files;
+  const photoName = photo.name.toLowerCase();
+
+  const matchTypes = FILE_TYPE.some((it) => photoName.endsWith(it));
+
+  if (matchTypes) {
+    photoPreview.innerHTML = `<img src="${URL.createObjectURL(photo)}" width="70" height="70">`;
+  }
+
+});
