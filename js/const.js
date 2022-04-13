@@ -9,15 +9,15 @@ const Messages = {
 };
 
 const DEFAULT_VALUE = 'any';
-const FILE_TYPE = ['gif', 'jpg', 'jpeg', 'png'];
-const COUNT_OF_ADVERT = 10;
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const COUNT_OF_ADS = 10;
 const MAP_ZOOM = 13;
 const RERENDER_DELAY = 500;
 const NUMBER_AFTER_POINT = 5;
 const MAX_PRICE_FOR_NIGHT = 100000;
 const PRICE_STEP = 100;
 
-const AdvertType = {
+const AdsTypes = {
   PALACE: 'palace',
   FLAT: 'flat',
   HOUSE: 'house',
@@ -26,20 +26,20 @@ const AdvertType = {
   ANY: 'any',
 };
 
-const advertTypeEnToRu = {
-  [AdvertType.PALACE]: 'Дворец',
-  [AdvertType.FLAT]: 'Квартира',
-  [AdvertType.HOUSE]: 'Дом',
-  [AdvertType.BUNGALOW]: 'Бунгало',
-  [AdvertType.HOTEL]: 'Отель',
+const adTypesToReadable = {
+  [AdsTypes.PALACE]: 'Дворец',
+  [AdsTypes.FLAT]: 'Квартира',
+  [AdsTypes.HOUSE]: 'Дом',
+  [AdsTypes.BUNGALOW]: 'Бунгало',
+  [AdsTypes.HOTEL]: 'Отель',
 };
 
-const adTypeToPrice = {
-  bungalow: 0,
-  flat: 1000,
-  hotel: 3000,
-  house: 5000,
-  palace: 10000,
+const adTypesToPrice = {
+  [AdsTypes.PALACE]: 10000,
+  [AdsTypes.FLAT]: 1000,
+  [AdsTypes.HOUSE]: 5000,
+  [AdsTypes.BUNGALOW]: 0,
+  [AdsTypes.HOTEL]: 3000,
 };
 
 const MAIN_LOCATION = {
@@ -47,7 +47,7 @@ const MAIN_LOCATION = {
   lng: 139.748876,
 };
 
-const PRICE_RANGE = {
+const PRICE_RANGES = {
   any: {
     minprice : 0,
     maxprice : 100000,
@@ -73,21 +73,5 @@ const ROOMS_GUESTS_OPTIONS = {
   '100': ['0'],
 };
 
-export {
-  ServerUrl,
-  Messages,
-  AdvertType,
-  advertTypeEnToRu,
-  adTypeToPrice,
-  FILE_TYPE,
-  COUNT_OF_ADVERT,
-  MAP_ZOOM,
-  RERENDER_DELAY,
-  MAIN_LOCATION,
-  NUMBER_AFTER_POINT,
-  MAX_PRICE_FOR_NIGHT,
-  PRICE_STEP,
-  PRICE_RANGE,
-  DEFAULT_VALUE,
-  ROOMS_GUESTS_OPTIONS
+export { ServerUrl, Messages, AdsTypes, adTypesToReadable, adTypesToPrice, FILE_TYPES, COUNT_OF_ADS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, MAX_PRICE_FOR_NIGHT, PRICE_STEP, PRICE_RANGES, DEFAULT_VALUE, ROOMS_GUESTS_OPTIONS
 };
