@@ -1,9 +1,9 @@
-import {createPopup} from './popup.js';
-import {getAds} from './api.js';
-import {toggleFormDisabled, toggleMapFiltersDisabled} from './switch.js';
-import {debounce, showAlert} from './random.js';
+import {COUNT_OF_ADVERTS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
+import {getAdvert} from './api.js';
 import {checkAllFilters} from './filter.js';
-import {COUNT_OF_ADS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
+import {createPopup} from './popup.js';
+import {debounce, showAlert} from './random.js';
+import {toggleFormDisabled, toggleMapFiltersDisabled} from './switch.js';
 
 const allAds = [];
 
@@ -84,9 +84,9 @@ const resetMainPin = () => {
 };
 
 (async () => {
-  const fetchedAds = await getAds(() => showAlert(`${Messages.GET_NO_ADS}`));
+  const fetchedAds = await getAdvert(() => showAlert(`${Messages.GET_NO_ADVERT}`));
   allAds.push(...fetchedAds);
-  allAds.slice(0, COUNT_OF_ADS).forEach((ad) => {
+  allAds.slice(0, COUNT_OF_ADVERTS).forEach((ad) => {
     createMarker(ad);
     toggleMapFiltersDisabled(false);
   });
@@ -95,12 +95,12 @@ const resetMainPin = () => {
 const filterAd = () => {
   markerGroup.clearLayers();
   const filteredAds = allAds.filter((ad) => checkAllFilters(ad));
-  filteredAds.slice(0, COUNT_OF_ADS).forEach((ad) => {
+  filteredAds.slice(0, COUNT_OF_ADVERTS).forEach((ad) => {
     createMarker(ad);
   });
 
   if (filteredAds.length <= 0) {
-    showAlert(`${Messages.FIND_NO_ADS}`);
+    showAlert(`${Messages.FIND_NO_ADVERT}`);
   }
 };
 
