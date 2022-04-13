@@ -1,6 +1,5 @@
-import {adTypesToPrice} from'./const.js';
+import {adTypesToPrice, MAX_PRICE_FOR_NIGHT, PRICE_STEP} from'./const.js';
 import {adPrice, pristine} from'./validator.js';
-import {MAX_PRICE_FOR_NIGHT, PRICE_STEP} from'./const.js';
 
 const sliderPrice = document.querySelector('.ad-form__slider');
 const adType = document.querySelector('#type');

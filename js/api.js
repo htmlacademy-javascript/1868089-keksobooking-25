@@ -1,6 +1,6 @@
 import {ServerUrl} from './const.js';
 
-const getAds = async (onError) => {
+const getAdvert = async (onError) => {
   let response;
   try {
     response = await fetch(
@@ -41,4 +41,4 @@ const sendData = (body, reset, onSuccess, onError) => {
     });
 };
 
-export {getAds, sendData};
+export {getAdvert, sendData};

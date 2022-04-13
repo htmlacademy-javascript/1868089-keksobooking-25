@@ -1,5 +1,5 @@
+import {advertTypeEnToRu} from'./const.js';
 import {numDecline} from'./random.js';
-import {adTypesToReadable} from'./const.js';
 
 const similarAdTemplate = document.querySelector('#card').content.querySelector('.popup');
 
@@ -45,7 +45,7 @@ const createPopup = ({offer, author}) => {
   adTitle.textContent = offer.title;
   adAddress.textContent = offer.address;
   adPrice.textContent = `${offer.price} ₽/ночь`;
-  adType.textContent = adTypesToReadable[offer.type];
+  adType.textContent = advertTypeEnToRu[offer.type];
   adCapacity.textContent = `${offer.rooms} ${numDecline(offer.rooms, 'комната', 'комнаты', 'комнат')} для ${offer.guests} ${numDecline(offer.guests, 'гостя', 'гостей', 'гостей')}`;
   adTime.textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   adDescription.textContent = offer.description;
