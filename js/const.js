@@ -1,3 +1,13 @@
+const ServerUrl = {
+  GET_URL: 'https://25.javascript.pages.academy/keksobooking/data',
+  POST_URL: 'https://25.javascript.pages.academy/keksobooking',
+};
+
+const Messages = {
+  GET_NO_ADS: 'Не удалось получить данные с сервера :(',
+  FIND_NO_ADS: 'Не удалось найти подходящие объявления',
+};
+
 const DEFAULT_VALUE = 'any';
 const FILE_TYPE = ['gif', 'jpg', 'jpeg', 'png'];
 const COUNT_OF_ADVERT = 10;
@@ -13,6 +23,7 @@ const AdvertType = {
   HOUSE: 'house',
   BUNGALOW: 'bungalow',
   HOTEL: 'hotel',
+  ANY: 'any',
 };
 
 const advertTypeEnToRu = {
@@ -29,6 +40,11 @@ const adTypeToPrice = {
   hotel: 3000,
   house: 5000,
   palace: 10000,
+};
+
+const MAIN_LOCATION = {
+  lat: 35.675178,
+  lng: 139.748876,
 };
 
 const PRICE_RANGE = {
@@ -58,6 +74,8 @@ const ROOMS_GUESTS_OPTIONS = {
 };
 
 export {
+  ServerUrl,
+  Messages,
   AdvertType,
   advertTypeEnToRu,
   adTypeToPrice,
@@ -65,6 +83,7 @@ export {
   COUNT_OF_ADVERT,
   MAP_ZOOM,
   RERENDER_DELAY,
+  MAIN_LOCATION,
   NUMBER_AFTER_POINT,
   MAX_PRICE_FOR_NIGHT,
   PRICE_STEP,
