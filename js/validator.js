@@ -1,4 +1,4 @@
-import {adTypeToPrice, MAX_PRICE_FOR_NIGHT, ROOM_GUEST_OPTION} from'./const.js';
+import {adTypesToPrice, MAX_PRICE_FOR_NIGHT, ROOMS_GUESTS_OPTIONS} from'./const.js';
 
 const form = document.querySelector('.ad-form');
 const adPrice = document.querySelector('#price');
@@ -9,7 +9,6 @@ const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const adTimeInOut = document.querySelector('.ad-form__element--time');
 
-
 const pristine = window.Pristine(form, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__item--invalid',
@@ -19,8 +18,8 @@ const pristine = window.Pristine(form, {
   errorTextClass: 'ad-form__error',
 });
 
-const validateAdPrice = (value) => value >= adTypeToPrice[adType.value] && value <= MAX_PRICE_FOR_NIGHT;
-const getAdTypeErrorMessage = () => `Минимальная цена за ночь: ${adTypeToPrice[adType.value]}`;
+const validateAdPrice = (value) => value >= adTypesToPrice[adType.value] && value <= MAX_PRICE_FOR_NIGHT;
+const getAdTypeErrorMessage = () => `Минимальная цена за ночь: ${adTypesToPrice[adType.value]}`;
 
 pristine.addValidator(
   adPrice,
@@ -29,8 +28,8 @@ pristine.addValidator(
 );
 
 const onAdTypeChange = function () {
-  adPrice.min = adTypeToPrice[this.value];
-  adPrice.placeholder =  adTypeToPrice[this.value];
+  adPrice.min = adTypesToPrice[this.value];
+  adPrice.placeholder =  adTypesToPrice[this.value];
   if (adPrice.value) {
     pristine.validate(adPrice);
   }
@@ -38,7 +37,7 @@ const onAdTypeChange = function () {
 
 adType.addEventListener('change', onAdTypeChange);
 
-const validateDelivery = () => ROOM_GUEST_OPTION[roomNumber.value].includes(capacity.value);
+const validateDelivery = () => ROOMS_GUESTS_OPTIONS[roomNumber.value].includes(capacity.value);
 const getDeliveryErrorMessage = () => 'Выберите другое кол-во гостей :)';
 
 pristine.addValidator(
