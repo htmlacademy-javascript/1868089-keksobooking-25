@@ -1,23 +1,23 @@
-const Messages = {
-  GET_NO_ADVERT: 'Не удалось получить данные с сервера :(',
-  FIND_NO_ADVERT: 'Не удалось найти подходящие объявления',
-};
-
 const ServerUrl = {
   GET_URL: 'https://25.javascript.pages.academy/keksobooking/data',
   POST_URL: 'https://25.javascript.pages.academy/keksobooking',
 };
 
+const Messages = {
+  GET_NO_ADS: 'Не удалось получить данные с сервера :(',
+  FIND_NO_ADS: 'Не удалось найти подходящие объявления',
+};
+
 const DEFAULT_VALUE = 'any';
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
-const COUNT_OF_ADVERTS = 10;
+const COUNT_OF_ADS = 10;
 const MAP_ZOOM = 13;
 const RERENDER_DELAY = 500;
 const NUMBER_AFTER_POINT = 5;
 const MAX_PRICE_FOR_NIGHT = 100000;
 const PRICE_STEP = 100;
 
-const AdvertsType = {
+const AdsTypes = {
   PALACE: 'palace',
   FLAT: 'flat',
   HOUSE: 'house',
@@ -26,20 +26,20 @@ const AdvertsType = {
   ANY: 'any',
 };
 
-const advertTypeEnToRu = {
-  [AdvertsType.PALACE]: 'Дворец',
-  [AdvertsType.FLAT]: 'Квартира',
-  [AdvertsType.HOUSE]: 'Дом',
-  [AdvertsType.BUNGALOW]: 'Бунгало',
-  [AdvertsType.HOTEL]: 'Отель',
+const adTypesToReadable = {
+  [AdsTypes.PALACE]: 'Дворец',
+  [AdsTypes.FLAT]: 'Квартира',
+  [AdsTypes.HOUSE]: 'Дом',
+  [AdsTypes.BUNGALOW]: 'Бунгало',
+  [AdsTypes.HOTEL]: 'Отель',
 };
 
 const adTypesToPrice = {
-  [AdvertsType.PALACE]: 10000,
-  [AdvertsType.FLAT]: 1000,
-  [AdvertsType.HOUSE]: 5000,
-  [AdvertsType.BUNGALOW]: 0,
-  [AdvertsType.HOTEL]: 3000,
+  [AdsTypes.PALACE]: 10000,
+  [AdsTypes.FLAT]: 1000,
+  [AdsTypes.HOUSE]: 5000,
+  [AdsTypes.BUNGALOW]: 0,
+  [AdsTypes.HOTEL]: 3000,
 };
 
 const MAIN_LOCATION = {
@@ -47,24 +47,25 @@ const MAIN_LOCATION = {
   lng: 139.748876,
 };
 
-const PRICE_RANGES = {
-  any: {
+const PriceRanges = {
+  ANY: {
     minprice : 0,
     maxprice : 100000,
   },
-  middle: {
+  MIDDLE: {
     minprice : 10001,
     maxprice : 50000,
   },
-  low: {
+  LOW: {
     minprice : 0,
     maxprice : 10000,
   },
-  high: {
+  HIGH: {
     minprice : 50001,
     maxprice : 100000,
   },
 };
+
 
 const ROOMS_GUESTS_OPTIONS = {
   '1': ['1'],
@@ -76,19 +77,18 @@ const ROOMS_GUESTS_OPTIONS = {
 export {
   ServerUrl,
   Messages,
-  AdvertsType,
-  advertTypeEnToRu,
+  AdsTypes,
+  adTypesToReadable,
   adTypesToPrice,
+  PriceRanges,
   FILE_TYPES,
-  COUNT_OF_ADVERTS,
+  COUNT_OF_ADS,
   MAP_ZOOM,
   RERENDER_DELAY,
   MAIN_LOCATION,
   NUMBER_AFTER_POINT,
   MAX_PRICE_FOR_NIGHT,
   PRICE_STEP,
-  PRICE_RANGES,
   DEFAULT_VALUE,
   ROOMS_GUESTS_OPTIONS
 };
-

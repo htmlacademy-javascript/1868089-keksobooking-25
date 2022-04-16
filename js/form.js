@@ -1,9 +1,11 @@
 import {pristine} from'./validator.js';
 import './slider.js';
+import {resetSlider} from './slider.js';
 import {getLocationToString, resetMainPin, filterAd} from './map.js';
 import {sendData} from './api.js';
 import {openMessage} from './fault.js';
 import {FILE_TYPES, NUMBER_AFTER_POINT, MAIN_LOCATION} from './const.js';
+
 
 const adForm = document.querySelector('.ad-form');
 const mainPinLocation = document.querySelector('#address');
@@ -33,9 +35,14 @@ const resetForm = (evt) => {
   resetAllPhoto();
   mainPinLocation.value = getLocationToString(MAIN_LOCATION, NUMBER_AFTER_POINT);
   resetMainPin();
+  resetSlider();
 };
 
-resetButton.addEventListener('click', resetForm);
+const onClickResetButton = (evt) => {
+  resetForm(evt);
+};
+
+resetButton.addEventListener('click', onClickResetButton);
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -50,6 +57,7 @@ adForm.addEventListener('submit', (evt) => {
     submitButton.disabled = true;
   }
 });
+
 
 avatarChooser.addEventListener('change', () => {
   const [avatar] = avatarChooser.files;
