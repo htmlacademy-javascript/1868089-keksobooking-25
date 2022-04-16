@@ -1,9 +1,9 @@
-import {COUNT_OF_ADVERTS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
-import {getAdvert} from './api.js';
-import {checkAllFilters} from './filter.js';
 import {createPopup} from './popup.js';
-import {debounce, showAlert} from './random.js';
-import {toggleFormDisabled, toggleMapFiltersDisabled} from './switch.js';
+import {getAds} from './api.js';
+import {disableForm, disableMapFilters} from './switcher.js';
+import {debounce, showAlert} from './util.js';
+import {checkAllFilters} from './filter.js';
+import {COUNT_OF_ADS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
 
 const allAds = [];
 
@@ -29,12 +29,10 @@ const getLocationToString = (obj, number) => {
   return `${lat}, ${lng}`;
 };
 
-toggleFormDisabled(true);
-toggleMapFiltersDisabled(true);
 
 const map = L.map('map-canvas')
   .on('load', () => {
-    toggleFormDisabled(false);
+    disableForm(false);
   })
   .setView(MAIN_LOCATION, MAP_ZOOM);
 
@@ -45,6 +43,7 @@ L.tileLayer(
   },
 ).addTo(map);
 
+// Добавление главной метки на карту
 const mainPinMarker = L.marker(
   MAIN_LOCATION,
   {
@@ -59,6 +58,7 @@ mainPinLocation.value = getLocationToString(mainPinMarker.getLatLng(), NUMBER_AF
 mainPinMarker.on('moveend', (evt) => {
   mainPinLocation.value = getLocationToString(evt.target.getLatLng(), NUMBER_AFTER_POINT);
 });
+
 
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -83,24 +83,26 @@ const resetMainPin = () => {
   map.closePopup();
 };
 
+
 (async () => {
-  const fetchedAds = await getAdvert(() => showAlert(`${Messages.GET_NO_ADVERT}`));
+  const fetchedAds = await getAds(() => showAlert(`${Messages.GET_NO_ADS}`));
   allAds.push(...fetchedAds);
-  allAds.slice(0, COUNT_OF_ADVERTS).forEach((ad) => {
+  allAds.slice(0, COUNT_OF_ADS).forEach((ad) => {
     createMarker(ad);
-    toggleMapFiltersDisabled(false);
+    disableMapFilters(false);
   });
 })();
+
 
 const filterAd = () => {
   markerGroup.clearLayers();
   const filteredAds = allAds.filter((ad) => checkAllFilters(ad));
-  filteredAds.slice(0, COUNT_OF_ADVERTS).forEach((ad) => {
+  filteredAds.slice(0, COUNT_OF_ADS).forEach((ad) => {
     createMarker(ad);
   });
 
   if (filteredAds.length <= 0) {
-    showAlert(`${Messages.FIND_NO_ADVERT}`);
+    showAlert(`${Messages.FIND_NO_ADS}`);
   }
 };
 
