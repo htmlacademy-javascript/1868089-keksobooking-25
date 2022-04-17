@@ -1,13 +1,13 @@
-const getWordEnd = (n, form1, form2, form3) => {
-  n = Math.abs(n) % 100;
-  const n1 = n % 10;
-  if (n > 10 && n < 20) {
+const getWordEnd = (number, form1, form2, form3) => {
+  number = Math.abs(number) % 100;
+  const number1 = number % 10;
+  if (number > 10 && number < 20) {
     return form3;
   }
-  if (n1 > 1 && n1 < 5) {
+  if (number1 > 1 && number1 < 5) {
     return form2;
   }
-  if (n1 === 1) {
+  if (number1 === 1) {
     return form1;
   }
   return form3;
