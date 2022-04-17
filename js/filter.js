@@ -1,4 +1,4 @@
-import {AdsTypes, PriceRanges, DEFAULT_VALUE} from './const.js';
+import {AdsTypes, PriceRanges, DEFAULT_VALUE} from './constant.js';
 
 const typeSelector = document.querySelector('#housing-type');
 const priceSelector = document.querySelector('#housing-price');
@@ -32,6 +32,5 @@ const checkAllFilters = (object) => {
 
   return checkType(object, type) && checkPrice(object, price) && checkRooms(object, rooms) && checkGuests(object, guests) && checkFeatures(object);
 };
-
 
 export {checkAllFilters};
