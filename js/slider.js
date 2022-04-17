@@ -1,6 +1,6 @@
-import {adTypesToPrice} from'./const.js';
+import {adTypesToPrice} from'./constant.js';
 import {adPrice, pristine} from'./validator.js';
-import {MAX_PRICE_FOR_NIGHT, PRICE_STEP} from'./const.js';
+import {MAX_PRICE_FOR_NIGHT, PRICE_STEP} from'./constant.js';
 
 const sliderPrice = document.querySelector('.ad-form__slider');
 const adType = document.querySelector('#type');
@@ -17,7 +17,6 @@ noUiSlider.create(sliderPrice, {
       if (Number.isInteger(value)) {
         return value.toFixed(0);
       }
-      return value.toFixed(0);
     },
     from: function (value) {
       return parseFloat(value);
