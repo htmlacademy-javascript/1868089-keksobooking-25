@@ -8,6 +8,8 @@ const Messages = {
   FIND_NO_ADS: 'Не удалось найти подходящие объявления',
 };
 
+const ALERT_SHOW_TIME = 5000;
+
 const DEFAULT_VALUE = 'any';
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const COUNT_OF_ADS = 10;
@@ -75,6 +77,7 @@ const ROOMS_GUESTS_OPTIONS = {
 };
 
 export {
+  ALERT_SHOW_TIME,
   ServerUrl,
   Messages,
   AdsTypes,
