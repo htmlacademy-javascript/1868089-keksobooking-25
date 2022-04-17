@@ -3,7 +3,7 @@ import {getAds} from './api.js';
 import {disableForm, disableMapFilters} from './switcher.js';
 import {debounce, showAlert} from './util.js';
 import {checkAllFilters} from './filter.js';
-import {COUNT_OF_ADS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './const.js';
+import {COUNT_OF_ADS, MAP_ZOOM, RERENDER_DELAY, MAIN_LOCATION, NUMBER_AFTER_POINT, Messages} from './constant.js';
 
 const allAds = [];
 
@@ -29,7 +29,6 @@ const getLocationToString = (obj, number) => {
   return `${lat}, ${lng}`;
 };
 
-
 const map = L.map('map-canvas')
   .on('load', () => {
     disableForm(false);
@@ -43,7 +42,6 @@ L.tileLayer(
   },
 ).addTo(map);
 
-// Добавление главной метки на карту
 const mainPinMarker = L.marker(
   MAIN_LOCATION,
   {
@@ -58,7 +56,6 @@ mainPinLocation.value = getLocationToString(mainPinMarker.getLatLng(), NUMBER_AF
 mainPinMarker.on('moveend', (evt) => {
   mainPinLocation.value = getLocationToString(evt.target.getLatLng(), NUMBER_AFTER_POINT);
 });
-
 
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -83,7 +80,6 @@ const resetMainPin = () => {
   map.closePopup();
 };
 
-
 (async () => {
   const fetchedAds = await getAds(() => showAlert(`${Messages.GET_NO_ADS}`));
   allAds.push(...fetchedAds);
@@ -92,7 +88,6 @@ const resetMainPin = () => {
     disableMapFilters(false);
   });
 })();
-
 
 const filterAd = () => {
   markerGroup.clearLayers();

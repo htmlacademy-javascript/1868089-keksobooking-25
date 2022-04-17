@@ -4,8 +4,7 @@ import {resetSlider} from './slider.js';
 import {getLocationToString, resetMainPin, filterAd} from './map.js';
 import {sendData} from './api.js';
 import {openMessage} from './fault.js';
-import {FILE_TYPES, NUMBER_AFTER_POINT, MAIN_LOCATION} from './const.js';
-
+import {FILE_TYPES, NUMBER_AFTER_POINT, MAIN_LOCATION} from './constant.js';
 
 const adForm = document.querySelector('.ad-form');
 const mainPinLocation = document.querySelector('#address');
@@ -57,7 +56,6 @@ adForm.addEventListener('submit', (evt) => {
     submitButton.disabled = true;
   }
 });
-
 
 avatarChooser.addEventListener('change', () => {
   const [avatar] = avatarChooser.files;
