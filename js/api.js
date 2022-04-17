@@ -1,4 +1,4 @@
-import {ServerUrl} from './const.js';
+import {ServerUrl} from './constant.js';
 
 const getAds = async (onError) => {
   let response;
