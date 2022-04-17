@@ -1,9 +1,9 @@
 import {getWordEnd} from'./util.js';
-import {adTypesToReadable} from'./const.js';
+import {adTypesToReadable} from'./constant.js';
 
 const similarAdTemplate = document.querySelector('#card').content.querySelector('.popup');
 
-const createPhotoElements = (photoArray, parentElement) => {
+const createPhotoElement = (photoArray, parentElement) => {
   photoArray.forEach((photo) => {
     const photoTemplate = parentElement.children[0].cloneNode(true);
     photoTemplate.src = photo;
@@ -12,7 +12,7 @@ const createPhotoElements = (photoArray, parentElement) => {
   parentElement.children[0].remove();
 };
 
-const createFeatureElements = (list, featuresArray) => {
+const createFeatureElement = (list, featuresArray) => {
   list.forEach((listItem) => {
     const isExists = featuresArray.some((userFeature) =>
       listItem.classList.contains(`popup__feature--${userFeature}`),
@@ -21,7 +21,7 @@ const createFeatureElements = (list, featuresArray) => {
   });
 };
 
-const checkAvailableData = (key, element) => {
+const analyzeAvailableData = (key, element) => {
   if (!key) {
     element.remove();
   }
@@ -51,24 +51,24 @@ const createPopup = ({offer, author}) => {
   adDescription.textContent = offer.description;
   adAvatar.src = author.avatar;
 
-  checkAvailableData(offer.title, adTitle);
-  checkAvailableData(offer.address, adAddress);
-  checkAvailableData(offer.price, adPrice);
-  checkAvailableData(offer.type, adType);
-  checkAvailableData(offer.rooms, adCapacity);
-  checkAvailableData(offer.checkin, adTime);
-  checkAvailableData(offer.description, adDescription);
-  checkAvailableData(author.avatar, adAvatar);
+  analyzeAvailableData(offer.title, adTitle);
+  analyzeAvailableData(offer.address, adAddress);
+  analyzeAvailableData(offer.price, adPrice);
+  analyzeAvailableData(offer.type, adType);
+  analyzeAvailableData(offer.rooms, adCapacity);
+  analyzeAvailableData(offer.checkin, adTime);
+  analyzeAvailableData(offer.description, adDescription);
+  analyzeAvailableData(author.avatar, adAvatar);
 
 
   if (offer.features) {
-    createFeatureElements(featuresList, offer.features);
+    createFeatureElement(featuresList, offer.features);
   } else {
     adFeatures.remove();
   }
 
   if (offer.photos) {
-    createPhotoElements(offer.photos, adPhotos);
+    createPhotoElement(offer.photos, adPhotos);
   } else {
     adPhotos.remove();
   }
