@@ -1,3 +1,5 @@
+import {ALERT_SHOW_TIME} from './constant.js';
+
 const getWordEnd = (number, form1, form2, form3) => {
   number = Math.abs(number) % 100;
   const number1 = number % 10;
@@ -17,16 +19,17 @@ const getIsEscape = (evt) => evt.key === 'Escape';
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.width = '300px';
-  alertContainer.style.right = '50%';
-  alertContainer.style.transform = 'translateX(50%)';
-  alertContainer.style.top = '55px';
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '12px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = '#ffaa99';
+  const style = alertContainer.style;
+  style.zIndex = 100;
+  style.position = 'absolute';
+  style.width = '300px';
+  style.right = '50%';
+  style.transform = 'translateX(50%)';
+  style.top = '55px';
+  style.padding = '10px 3px';
+  style.fontSize = '12px';
+  style.textAlign = 'center';
+  style.backgroundColor = '#ffaa99';
 
   alertContainer.textContent = message;
 
@@ -34,7 +37,7 @@ const showAlert = (message) => {
 
   setTimeout(() => {
     alertContainer.remove();
-  }, 2000);
+  }, ALERT_SHOW_TIME);
 };
 
 // Функция debounce - устранения дребезга
