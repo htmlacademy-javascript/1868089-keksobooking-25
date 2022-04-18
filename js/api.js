@@ -1,10 +1,10 @@
-import {ServerUrl} from './constant.js';
+import {ApiUrl} from './constant.js';
 
 const getAds = async (onError) => {
   let response;
   try {
     response = await fetch(
-      ServerUrl.GET_URL,
+      ApiUrl.GET,
       {
         method: 'GET',
         credentials: 'same-origin',
@@ -22,7 +22,7 @@ const getAds = async (onError) => {
 
 const sendData = (body, reset, onSuccess, onError) => {
   fetch(
-    ServerUrl.POST_URL,
+    ApiUrl.POST,
     {
       method: 'POST',
       body,
