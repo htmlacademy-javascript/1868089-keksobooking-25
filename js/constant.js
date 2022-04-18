@@ -1,6 +1,6 @@
-const ServerUrl = {
-  GET_URL: 'https://25.javascript.pages.academy/keksobooking/data',
-  POST_URL: 'https://25.javascript.pages.academy/keksobooking',
+const ApiUrl = {
+  GET: 'https://25.javascript.pages.academy/keksobooking/data',
+  POST: 'https://25.javascript.pages.academy/keksobooking',
 };
 
 const Messages = {
@@ -78,7 +78,7 @@ const ROOMS_GUESTS_OPTIONS = {
 
 export {
   ALERT_SHOW_TIME,
-  ServerUrl,
+  ApiUrl,
   Messages,
   AdsTypes,
   adTypesToReadable,
